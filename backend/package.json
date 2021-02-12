@@ -1,0 +1,20 @@
+{
+  "name": "docker101",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "fastify": "^3.11.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "fastify-mysql": "^2.1.0",
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "start": "nodemon ./src/server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
