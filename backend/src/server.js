@@ -1,5 +1,6 @@
 require('dotenv').config();
 const fastify = require('fastify')({ logger: true })
+fastify.register(require('fastify-cors'));
 
 const { MYSQL_USER, MYSQL_PASSWORD, MYSQL_HOST, TOKEN_SECRET } = process.env;
 

@@ -6,7 +6,7 @@ async function routes(fastify) {
 
     fastify.post('/reviews/create', async (request, reply) => {
         const reviewInfo = request.body;
-        const res = await reviews.addNewParty(reviewInfo);
+        const res = await reviews.addReview(reviewInfo);
         reply.code(res.status || 200).send(res);
     });
 
