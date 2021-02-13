@@ -102,15 +102,31 @@ function App() {
 		reviews: "",
 		author: ""
 	})
+	const [validate, setValidate] = useState({
+		class_name: true,
+		reviews: true,
+		author: true
+	})
 
 	const inputLabelProps = {
         shrink: true,
     }
 
 	const createNewReview = () => {
-		createReview(newReview)
-		setPage("main")
-		window.location.reload()
+		const isClassNameValid = (newReview.class_name !== "")
+		const isReviewsValid = (newReview.reviews !== "")
+		const isAuthorValid = (newReview.author !== "")
+		const isNewReviewValid = (isClassNameValid && isReviewsValid && isAuthorValid)
+		setValidate({
+			class_name: isClassNameValid,
+			reviews: isReviewsValid,
+			author: isAuthorValid
+		})
+		if (isNewReviewValid) {
+			createReview(newReview)
+			setPage("main")
+			window.location.reload()
+		}
 	}
 
 	useEffect(() => {
@@ -145,6 +161,7 @@ function App() {
 						InputLabelProps={inputLabelProps} 
 						value={newReview.class_name}
 						onChange={(e) => setNewReview({...newReview, class_name: e.target.value})}
+						error={!validate.class_name}
 					/>
 					<TextFieldCustom
 						id="input-reviews" 
@@ -155,6 +172,7 @@ function App() {
 						InputLabelProps={inputLabelProps} 
 						value={newReview.reviews}
 						onChange={(e) => setNewReview({...newReview, reviews: e.target.value})}
+						error={!validate.reviews}
 					/>
 					<TextFieldCustom
 						id="input-author" 
@@ -163,6 +181,7 @@ function App() {
 						InputLabelProps={inputLabelProps} 
 						value={newReview.author}
 						onChange={(e) => setNewReview({...newReview, author: e.target.value})}
+						error={!validate.author}
 					/>
 					<CreateButton variant="contained" onClick={createNewReview}>สร้างรีวิวใหม่</CreateButton>
 				</ReviewForm>
