@@ -6,7 +6,8 @@ import ReviewCard from './components/ReviewCard';
 
 const Background = styled.div`
 	background-image: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%);
-	height: 100vh;
+	min-height: 100vh;
+	height: 100%;
 	display: flex;
 `
 
@@ -14,10 +15,11 @@ const PageContainer = styled.div`
 	display: ${(props) => props.currentPage ? "block" : "none"};
 	background-color: white;
 	margin: 30px;
+	min-height: 100%;
 	height: calc(100% - 60px - 56px);
+	width: calc(100% - 120px);
 	border-radius: 10px;
-	width: 100%;
-	padding: 28px;
+	padding: 30px;
 `
 
 const PageTitle = styled.div`
@@ -125,7 +127,7 @@ function App() {
 				{
 					reviews.map((review) => {
 						return (
-							<ReviewCard review={review} />
+							<ReviewCard key={review.id} review={review} />
 						)
 					})
 				}
@@ -149,7 +151,7 @@ function App() {
 						label="รีวิว" 
 						placeholder="รีวิววิชานี้" 
 						multiline
-						rows={14}
+						rows={10}
 						InputLabelProps={inputLabelProps} 
 						value={newReview.reviews}
 						onChange={(e) => setNewReview({...newReview, reviews: e.target.value})}
