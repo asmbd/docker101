@@ -15,14 +15,7 @@ async function routes(fastify) {
         reply.code(res.status || 200).send(res)
     })
 
-    fastify.put('/reviews/:id', async (request, reply) => {
-        const reviewID = request.params.id
-        const updateInfo = request.body
-        const res = await reviews.updateReview(reviewID, updateInfo)
-        reply.code(res.status || 200).send(res)
-    })
-
-    fastify.delete('/review/:id', async (request, reply) => {
+    fastify.delete('/reviews/:id', async (request, reply) => {
         const reviewID = request.params.id
         try {
             const res = await reviews.deleteReview(reviewID)

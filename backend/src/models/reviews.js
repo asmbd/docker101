@@ -16,23 +16,6 @@ class ReviewsTable extends MySQLModel {
         return reviews
     }
 
-    async updateReview(reviewID, updateInfo) {
-        const filter = {
-            id: reviewID
-        };
-
-        try {
-            const result = await this.update(filter, updateInfo);
-            if (result[0].affectedRows === 0) {
-                return { message: "Review not found", status: 400 }
-            } else {
-                return { message: "Review info updated", status: 200 }
-            }
-        } catch (error) {
-            return (error)
-        }
-    }
-
     async deleteReview(reviewID) {
         const filter = {
             id: reviewID

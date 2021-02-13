@@ -25,29 +25,6 @@ class MySQLModel {
         return rows;
     }
 
-    async findOne(filter) {
-        const orderer = "id"
-        const limit = 1
-        const objectKeys = Object.keys(filter)
-        const objectValues = Object.values(filter)
-        const queryCondition = objectKeys.map((key, index) => `${key} = \'${objectValues[index]}\'`).join(" AND ")
-        const sql = `SELECT * FROM \`${this.tableName}\` WHERE ${queryCondition} ORDER BY ${orderer} LIMIT ${limit}`;
-        const [rows] = await this.db.pool.query(sql);
-        return rows[0];
-    }
-
-    async update(filter, data) {
-        const dataObjectKeys = Object.keys(data);
-        const dataObjectValues = Object.values(data);
-        const updateQuery = dataObjectKeys.map((key, index) => `${key} = \'${dataObjectValues[index]}\'`).join(",")
-        const filterObjectKeys = Object.keys(filter);
-        const filterObjectValues = Object.values(filter);
-        const queryCondition = filterObjectKeys.map((key, index) => `${key} = \'${filterObjectValues[index]}\'`).join(" AND ")
-        const sql = `UPDATE \`${this.tableName}\` SET ${updateQuery} WHERE ${queryCondition}`;
-        const response = await this.db.pool.query(sql, dataObjectValues);
-        return response;
-    }
-
     async delete(filter) {
         const objectKeys = Object.keys(filter)
         const objectValues = Object.values(filter)
